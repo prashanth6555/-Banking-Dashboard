@@ -1,0 +1,113 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "DM Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Instrument Serif", Georgia, serif;
+  --color-ink: #061018;
+  --color-panel: #0b1822;
+  --color-line: rgba(148, 197, 214, 0.14);
+  --color-mint: #5eead4;
+  --color-gold: #f5d38a;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  width: 100%;
+  max-width: none;
+  min-height: 100%;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+html,
+body {
+  overflow-x: hidden;
+  background: #061018;
+  color: #e8f4f8;
+  font-family: var(--font-sans);
+}
+
+#root {
+  min-height: 100svh;
+  text-align: left;
+}
+
+.mesh {
+  background:
+    radial-gradient(900px 500px at 12% -10%, rgba(45, 212, 191, 0.18), transparent 55%),
+    radial-gradient(700px 420px at 92% 8%, rgba(56, 189, 248, 0.16), transparent 50%),
+    radial-gradient(600px 380px at 70% 100%, rgba(245, 211, 138, 0.08), transparent 55%),
+    #061018;
+}
+
+.glass {
+  background: linear-gradient(180deg, rgba(18, 42, 56, 0.72), rgba(10, 24, 34, 0.86));
+  border: 1px solid rgba(148, 197, 214, 0.14);
+  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.28);
+  backdrop-filter: blur(18px);
+}
+
+.shine {
+  position: relative;
+  overflow: hidden;
+}
+
+.shine::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    115deg,
+    transparent 30%,
+    rgba(255, 255, 255, 0.16) 48%,
+    transparent 62%
+  );
+  transform: translateX(-120%);
+  pointer-events: none;
+}
+
+.shine:hover::after {
+  animation: sheen 0.9s ease;
+}
+
+@keyframes sheen {
+  to {
+    transform: translateX(120%);
+  }
+}
+
+@keyframes floaty {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+.floaty {
+  animation: floaty 5.5s ease-in-out infinite;
+}
+
+.scrollbar-thin::-webkit-scrollbar {
+  width: 6px;
+}
+
+.scrollbar-thin::-webkit-scrollbar-thumb {
+  background: rgba(94, 234, 212, 0.28);
+  border-radius: 99px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .floaty,
+  .shine::after {
+    animation: none !important;
+  }
+}
